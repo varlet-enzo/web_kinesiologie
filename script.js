@@ -205,8 +205,24 @@ async function sendAppointment(data) {
 }
 
 function showConfirmation(e) {
-    setTimeout(function() {
-        document.getElementById('appointmentForm').style.display = 'none';
-        showPopupConfirmation('Merci, votre demande a bien été envoyée !');
-    }, 100); // Laisse le temps à Formspree d'envoyer
+    e.preventDefault();
+    var form = document.getElementById('appointmentForm');
+    var data = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        date: form.date.value,
+        time: form.time.value,
+        session_type: form['session-type'].value,
+        message: form.message.value
+    };
+    sendAppointment(data).then(success => {
+        if (success) {
+            form.reset();
+            form.style.display = 'none';
+            showPopupConfirmation('Merci, votre demande a bien été envoyée !');
+        } else {
+            showPopupConfirmation('Erreur lors de l\'envoi, réessayez.');
+        }
+    });
 } 
