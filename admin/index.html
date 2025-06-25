@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Kinésiologie</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Login Form -->
+        <div class="login-container" id="loginForm">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1><i class="fas fa-user-shield"></i> Administration</h1>
+                    <p>Connectez-vous à votre espace d'administration</p>
+                </div>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </button>
+                </form>
+                <div class="login-footer">
+                    <a href="../index.html">← Retour au site</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div class="dashboard-container" id="dashboard" style="display: none;">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1><i class="fas fa-chart-line"></i> Tableau de bord</h1>
+                    <p>Gestion de votre cabinet de kinésiologie</p>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <span id="adminName">Administrateur</span>
+                        <button id="logoutBtn" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Déconnexion
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Navigation -->
+            <nav class="admin-nav">
+                <button class="nav-btn active" data-tab="overview">
+                    <i class="fas fa-home"></i> Vue d'ensemble
+                </button>
+                <button class="nav-btn" data-tab="appointments">
+                    <i class="fas fa-calendar-alt"></i> Rendez-vous
+                </button>
+                <button class="nav-btn" data-tab="messages">
+                    <i class="fas fa-envelope"></i> Messages
+                </button>
+                <button class="nav-btn" data-tab="settings">
+                    <i class="fas fa-cog"></i> Paramètres
+                </button>
+            </nav>
+
+            <!-- Content Area -->
+            <main class="admin-content">
+                <!-- Overview Tab -->
+                <div class="tab-content active" id="overview">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalAppointments">0</h3>
+                                <p>Rendez-vous ce mois</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="newMessages">0</h3>
+                                <p>Nouveaux messages</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalClients">0</h3>
+                                <p>Clients total</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-euro-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="monthlyRevenue">0€</h3>
+                                <p>Revenus ce mois</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-section">
+                        <h2>Rendez-vous récents</h2>
+                        <div class="recent-appointments" id="recentAppointments">
+                            <!-- Rendez-vous récents seront chargés ici -->
+                        </div>
+                    </div>
+
+                    <div class="recent-section">
+                        <h2>Messages récents</h2>
+                        <div class="recent-messages" id="recentMessages">
+                            <!-- Messages récents seront chargés ici -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointments Tab -->
+                <div class="tab-content" id="appointments">
+                    <div class="tab-header">
+                        <h2>Gestion des rendez-vous</h2>
+                        <button class="add-btn" id="addAppointmentBtn">
+                            <i class="fas fa-plus"></i> Nouveau RDV
+                        </button>
+                    </div>
+                    
+                    <div class="filters">
+                        <select id="statusFilter">
+                            <option value="all">Tous les statuts</option>
+                            <option value="pending">En attente</option>
+                            <option value="confirmed">Confirmé</option>
+                            <option value="cancelled">Annulé</option>
+                            <option value="completed">Terminé</option>
+                        </select>
+                        <input type="date" id="dateFilter" placeholder="Filtrer par date">
+                        <button class="filter-btn" id="applyFilters">
+                            <i class="fas fa-filter"></i> Filtrer
+                        </button>
+                    </div>
+
+                    <div class="appointments-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Date</th>
+                                    <th>Horaire</th>
+                                    <th>Type</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsTableBody">
+                                <!-- Rendez-vous seront chargés ici -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Messages Tab -->
+                <div class="tab-content" id="messages">
+                    <div class="tab-header">
+                        <h2>Messages des clients</h2>
+                        <button class="refresh-btn" id="refreshMessages">
+                            <i class="fas fa-sync-alt"></i> Actualiser
+                        </button>
+                    </div>
+
+                    <div class="messages-container">
+                        <div class="message-filters">
+                            <button class="filter-btn active" data-filter="all">Tous</button>
+                            <button class="filter-btn" data-filter="unread">Non lus</button>
+                            <button class="filter-btn" data-filter="read">Lus</button>
+                        </div>
+
+                        <div class="messages-list" id="messagesList">
+                            <!-- Messages seront chargés ici -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="tab-content" id="settings">
+                    <div class="settings-section">
+                        <h2>Configuration Email</h2>
+                        <form id="emailSettingsForm">
+                            <div class="form-group">
+                                <label for="emailAddress">Adresse email de réception</label>
+                                <input type="email" id="emailAddress" name="emailAddress" placeholder="votre-email@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailPassword">Mot de passe email</label>
+                                <input type="password" id="emailPassword" name="emailPassword">
+                            </div>
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i> Sauvegarder
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-section">
+                        <h2>Intégration Google Calendar</h2>
+                        <form id="calendarSettingsForm">
+                            <div class="form-group">
+                                <label for="calendarId">ID du calendrier Google</label>
+                                <input type="text" id="calendarId" name="calendarId" placeholder="votre-email@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="apiKey">Clé API Google</label>
+                                <input type="text" id="apiKey" name="apiKey" placeholder="Votre clé API Google">
+                            </div>
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i> Sauvegarder
+                            </button>
+                        </form>
+                        <div class="calendar-test">
+                            <button id="testCalendarBtn" class="test-btn">
+                                <i class="fas fa-calendar-check"></i> Tester la connexion
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h2>Paramètres généraux</h2>
+                        <form id="generalSettingsForm">
+                            <div class="form-group">
+                                <label for="businessName">Nom du cabinet</label>
+                                <input type="text" id="businessName" name="businessName" value="Kinésiologie">
+                            </div>
+                            <div class="form-group">
+                                <label for="businessHours">Horaires d'ouverture</label>
+                                <textarea id="businessHours" name="businessHours" rows="3">Lundi - Vendredi : 9h - 19h
+Samedi : 9h - 17h
+Dimanche : Fermé</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="sessionDuration">Durée par défaut des séances (minutes)</label>
+                                <input type="number" id="sessionDuration" name="sessionDuration" value="60">
+                            </div>
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i> Sauvegarder
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal pour nouveau rendez-vous -->
+    <div class="modal" id="appointmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nouveau rendez-vous</h3>
+                <button class="close-btn" id="closeAppointmentModal">&times;</button>
+            </div>
+            <form id="newAppointmentForm">
+                <div class="form-group">
+                    <label for="clientName">Nom du client</label>
+                    <input type="text" id="clientName" name="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientEmail">Email</label>
+                    <input type="email" id="clientEmail" name="clientEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Date</label>
+                    <input type="date" id="appointmentDate" name="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentTime">Heure</label>
+                    <input type="time" id="appointmentTime" name="appointmentTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="sessionType">Type de séance</label>
+                    <select id="sessionType" name="sessionType" required>
+                        <option value="premiere">Première séance</option>
+                        <option value="suivi">Séance de suivi</option>
+                        <option value="specifique">Séance spécifique</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancelAppointment">Annuler</button>
+                    <button type="submit" class="save-btn">Créer le RDV</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html> 
