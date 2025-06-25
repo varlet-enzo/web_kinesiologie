@@ -187,26 +187,42 @@ function showPopupConfirmation(message) {
     }, 3500);
 }
 
+const SUPABASE_URL = 'https://uiasddcfatwdcccdnxap.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpYXNkZGNmYXR3ZGNjY2RueGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA4MTgwNzcsImV4cCI6MjA2NjM5NDA3N30.uL9EVcahC_kkj9nkJrR2sIyXNPNVe1cb0i_8TOldSWQ';
+
+async function sendAppointment(data) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/appointments`, {
+        method: 'POST',
+        headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation'
+        },
+        body: JSON.stringify(data)
+    });
+    return res.ok;
+}
+
 function showConfirmation(e) {
-    // Empêche la redirection par défaut de Formspree
     e.preventDefault();
     var form = document.getElementById('appointmentForm');
-    var data = new FormData(form);
-    fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-    }).then(function(response) {
-        if (response.ok) {
+    var data = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        date: form.date.value,
+        time: form.time.value,
+        session_type: form['session-type'].value,
+        message: form.message.value
+    };
+    sendAppointment(data).then(success => {
+        if (success) {
             form.reset();
             form.style.display = 'none';
-            showPopupConfirmation('Merci, votre demande a bien été envoyée ! Vous recevrez une réponse rapidement.');
+            showPopupConfirmation('Merci, votre demande a bien été envoyée !');
         } else {
-            showPopupConfirmation("Une erreur s'est produite. Veuillez réessayer.");
+            showPopupConfirmation('Erreur lors de l\'envoi, réessayez.');
         }
-    }).catch(function() {
-        showPopupConfirmation("Une erreur s'est produite. Veuillez réessayer.");
     });
 } 

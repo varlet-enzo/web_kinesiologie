@@ -825,54 +825,6 @@ function saveSiteSettings() {
     showNotification('Paramètres sauvegardés', 'success');
 }
 
-// Save email settings
-function saveEmailSettings() {
-    const form = document.getElementById('emailSettingsForm');
-    const formData = new FormData(form);
-    
-    const emailSettings = {
-        smtpHost: formData.get('smtpHost'),
-        smtpPort: formData.get('smtpPort'),
-        smtpUser: formData.get('smtpUser'),
-        smtpPass: formData.get('smtpPass')
-    };
-    
-    localStorage.setItem('emailSettings', JSON.stringify(emailSettings));
-    showNotification('Paramètres email sauvegardés', 'success');
-}
-
-// Save calendar settings
-function saveCalendarSettings() {
-    const form = document.getElementById('calendarSettingsForm');
-    const formData = new FormData(form);
-    
-    const calendarSettings = {
-        calendarType: formData.get('calendarType'),
-        calendarUrl: formData.get('calendarUrl')
-    };
-    
-    localStorage.setItem('calendarSettings', JSON.stringify(calendarSettings));
-    showNotification('Paramètres calendrier sauvegardés', 'success');
-}
-
-// Test email settings
-function testEmailSettings() {
-    showNotification('Test de connexion email en cours...', 'info');
-    // Simulate email test
-    setTimeout(() => {
-        showNotification('Connexion email réussie !', 'success');
-    }, 2000);
-}
-
-// Test calendar integration
-function testCalendarIntegration() {
-    showNotification('Test d\'intégration calendrier en cours...', 'info');
-    // Simulate calendar test
-    setTimeout(() => {
-        showNotification('Intégration calendrier réussie !', 'success');
-    }, 2000);
-}
-
 // Show notification
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
@@ -968,4 +920,47 @@ function initializeSampleData() {
 }
 
 // Initialize sample data when the script loads
-initializeSampleData(); 
+initializeSampleData();
+
+const SUPABASE_URL = 'https://uiasddcfatwdcccdnxap.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpYXNkZGNmYXR3ZGNjY2RueGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA4MTgwNzcsImV4cCI6MjA2NjM5NDA3N30.uL9EVcahC_kkj9nkJrR2sIyXNPNVe1cb0i_8TOldSWQ';
+
+async function fetchAppointments() {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/appointments?order=created_at.desc`, {
+        headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+    });
+    if (res.ok) {
+        return await res.json();
+    }
+    return [];
+}
+
+// Exemple d'utilisation pour remplir le tableau des rendez-vous
+function renderAppointmentsTable() {
+    fetchAppointments().then(appointments => {
+        const tableBody = document.getElementById('appointmentsTableBody');
+        if (!tableBody) return;
+        tableBody.innerHTML = '';
+        appointments.forEach(app => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${app.name}</td>
+                <td>${app.date}</td>
+                <td>${app.time}</td>
+                <td>${app.session_type || ''}</td>
+                <td>${app.email}</td>
+                <td>${app.phone || ''}</td>
+                <td>${app.message || ''}</td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    });
+}
+
+// Appelle la fonction au chargement de l'admin
+if (window.location.pathname.includes('admin')) {
+    document.addEventListener('DOMContentLoaded', renderAppointmentsTable);
+} 
