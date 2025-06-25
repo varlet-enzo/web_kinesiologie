@@ -28,30 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Gestion du formulaire de contact
-    const appointmentForm = document.getElementById('appointmentForm');
-    if (appointmentForm) {
-        appointmentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupération des données du formulaire
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Validation basique
-            if (!data.name || !data.email || !data.date || !data.time) {
-                showNotification('Veuillez remplir tous les champs obligatoires.', 'error');
-                return;
-            }
-            
-            // Simulation d'envoi (remplacer par votre logique d'envoi)
-            showNotification('Votre demande de rendez-vous a été envoyée avec succès ! Nous vous contacterons bientôt.', 'success');
-            
-            // Reset du formulaire
-            this.reset();
-        });
-    }
-
     // Animation au scroll
     const observerOptions = {
         threshold: 0.1,
@@ -76,57 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Système de notification
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <span class="notification-message">${message}</span>
-                <button class="notification-close">&times;</button>
-            </div>
-        `;
-        
-        // Styles pour la notification
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'};
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 10000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            max-width: 400px;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Animation d'entrée
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Fermeture automatique
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 5000);
-        
-        // Fermeture manuelle
-        notification.querySelector('.notification-close').addEventListener('click', () => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        });
-    }
-
     // Validation des champs de date
     const dateInput = document.getElementById('date');
     if (dateInput) {
@@ -138,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const today = new Date();
             
             if (selectedDate < today) {
-                showNotification('Veuillez sélectionner une date future.', 'error');
                 this.value = '';
             }
         });

@@ -81,27 +81,23 @@
 
                     <div class="contact-form">
                         <h2>Prendre Rendez-vous</h2>
-                        <form id="appointmentForm">
+                        <form id="appointmentForm" action="https://formspree.io/f/mnnvojze" method="POST" onsubmit="showConfirmation(event)">
                             <div class="form-group">
                                 <label for="name">Nom complet *</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="email">Email *</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="phone">Téléphone</label>
                                 <input type="tel" id="phone" name="phone">
                             </div>
-                            
                             <div class="form-group">
                                 <label for="date">Date souhaitée *</label>
                                 <input type="date" id="date" name="date" required>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="time">Horaire préféré *</label>
                                 <select id="time" name="time" required>
@@ -116,7 +112,6 @@
                                     <option value="18:00">18:00</option>
                                 </select>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="session-type">Type de séance</label>
                                 <select id="session-type" name="session-type">
@@ -126,14 +121,13 @@
                                     <option value="seance-specifique">Séance spécifique</option>
                                 </select>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="message">Message (optionnel)</label>
                                 <textarea id="message" name="message" rows="4" placeholder="Décrivez brièvement votre situation ou vos objectifs..."></textarea>
                             </div>
-                            
                             <button type="submit" class="submit-button">Envoyer ma demande</button>
                         </form>
+                        <div id="confirmation-message" style="display:none; margin-top:2rem; color:var(--color-success); font-weight:600; text-align:center;">Merci, votre demande a bien été envoyée ! Vous recevrez une réponse rapidement.</div>
                     </div>
                 </div>
             </div>
@@ -233,5 +227,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+    function showConfirmation(e) {
+        // Affiche le message de confirmation après l'envoi du formulaire
+        setTimeout(function() {
+            document.getElementById('appointmentForm').style.display = 'none';
+            document.getElementById('confirmation-message').style.display = 'block';
+        }, 100); // Laisse le temps à Formspree d'envoyer
+    }
+    </script>
 </body>
 </html> 
