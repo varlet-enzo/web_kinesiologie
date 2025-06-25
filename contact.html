@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Kinésiologie</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>Kinésiologie</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="presentation.html" class="nav-link">Présentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link active">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Contactez-moi</h1>
+                <p>Prenez rendez-vous pour une séance de kinésiologie personnalisée</p>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Mes Coordonnées</h2>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-text">
+                                    <h4>Adresse</h4>
+                                    <p>123 Rue de la Paix<br>75001 Paris, France</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">
+                                    <h4>Téléphone</h4>
+                                    <p>01 23 45 67 89</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>contact@kinesiologie.fr</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">🕒</div>
+                                <div class="contact-text">
+                                    <h4>Horaires</h4>
+                                    <p>Lundi - Vendredi : 9h - 19h<br>Samedi : 9h - 17h<br>Dimanche : Fermé</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h2>Prendre Rendez-vous</h2>
+                        <form id="appointmentForm">
+                            <div class="form-group">
+                                <label for="name">Nom complet *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date">Date souhaitée *</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="time">Horaire préféré *</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Choisissez un horaire</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="session-type">Type de séance</label>
+                                <select id="session-type" name="session-type">
+                                    <option value="">Choisissez le type de séance</option>
+                                    <option value="premiere-seance">Première séance (1h30)</option>
+                                    <option value="seance-suivi">Séance de suivi (1h)</option>
+                                    <option value="seance-specifique">Séance spécifique</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message (optionnel)</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Décrivez brièvement votre situation ou vos objectifs..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-button">Envoyer ma demande</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <div class="container">
+                <h2>Tarifs</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Première Séance</h3>
+                        <div class="price">80€</div>
+                        <p class="duration">1h30</p>
+                        <ul>
+                            <li>Anamnèse complète</li>
+                            <li>Évaluation des besoins</li>
+                            <li>Première séance de kinésiologie</li>
+                            <li>Conseils personnalisés</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured">
+                        <h3>Séance de Suivi</h3>
+                        <div class="price">60€</div>
+                        <p class="duration">1h</p>
+                        <ul>
+                            <li>Séance de kinésiologie complète</li>
+                            <li>Suivi des progrès</li>
+                            <li>Ajustements personnalisés</li>
+                            <li>Conseils d'auto-équilibration</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Pack 5 Séances</h3>
+                        <div class="price">270€</div>
+                        <p class="duration">5 x 1h</p>
+                        <ul>
+                            <li>Économisez 30€</li>
+                            <li>Suivi régulier</li>
+                            <li>Progrès optimisés</li>
+                            <li>Accompagnement complet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="container">
+                <h2>Questions Fréquentes</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>Combien de séances sont nécessaires ?</h3>
+                        <p>Le nombre de séances varie selon chaque personne et ses objectifs. Généralement, 3 à 5 séances permettent de constater des améliorations significatives.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Comment se déroule une séance ?</h3>
+                        <p>Une séance commence par un échange sur vos besoins, puis j'utilise le test musculaire pour identifier les déséquilibres et les corriger avec des techniques appropriées.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>La kinésiologie est-elle remboursée ?</h3>
+                        <p>La kinésiologie n'est pas remboursée par la Sécurité Sociale, mais certaines mutuelles proposent des forfaits pour les médecines douces.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Y a-t-il des contre-indications ?</h3>
+                        <p>La kinésiologie est une approche douce et non invasive. Elle peut être pratiquée à tout âge, même chez les enfants et les personnes âgées.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kinésiologie</h3>
+                    <p>Votre partenaire bien-être pour un équilibre corps-esprit optimal.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="presentation.html">Présentation</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 contact@kinesiologie.fr</p>
+                    <p>📞 01 23 45 67 89</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kinésiologie. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

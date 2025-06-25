@@ -1,0 +1,765 @@
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Couleurs nude/orangé */
+    --color-primary: #D2691E; /* Orange chocolat */
+    --color-secondary: #F4A460; /* Sandy brown */
+    --color-accent: #FF8C42; /* Dark orange */
+    --color-nude-light: #F5E6D3; /* Nude très clair */
+    --color-nude: #E6D5C3; /* Nude */
+    --color-nude-dark: #D4C4B7; /* Nude foncé */
+    --color-white: #FFFFFF;
+    --color-black: #2C2C2C;
+    --color-gray-light: #F8F8F8;
+    --color-gray: #6B6B6B;
+    --color-gray-dark: #4A4A4A;
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    
+    /* Border radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo h2 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-md);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--color-gray-dark);
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-primary);
+    background-color: var(--color-nude-light);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-primary);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--color-nude-light) 0%, var(--color-secondary) 100%);
+    padding: 120px 0 var(--spacing-xl);
+    text-align: center;
+    margin-top: 70px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--color-gray-dark);
+    margin-bottom: var(--spacing-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Buttons */
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.cta-button:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Sections */
+section {
+    padding: var(--spacing-xl) 0;
+}
+
+section h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--color-black);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-weight: 700;
+}
+
+/* About Kinesiology */
+.about-kinesiology {
+    background-color: var(--color-gray-light);
+}
+
+.kinesiology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.kinesiology-card {
+    background-color: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease;
+}
+
+.kinesiology-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.kinesiology-card h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.3rem;
+}
+
+/* Benefits */
+.benefits-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.benefit-item {
+    background-color: var(--color-nude-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.benefit-item h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    color: var(--color-white);
+    text-align: center;
+}
+
+.cta-section h2 {
+    color: var(--color-white);
+}
+
+.cta-section .cta-button {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+}
+
+.cta-section .cta-button:hover {
+    background-color: var(--color-nude-light);
+}
+
+/* Presentation Page */
+.presentation-hero {
+    background: linear-gradient(135deg, var(--color-nude-light) 0%, var(--color-secondary) 100%);
+    padding: 120px 0 var(--spacing-xl);
+    margin-top: 70px;
+}
+
+.presentation-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.presentation-text h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xs);
+}
+
+.presentation-text h2 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.tagline {
+    font-style: italic;
+    color: var(--color-gray-dark);
+    font-size: 1.1rem;
+}
+
+.image-placeholder {
+    background-color: var(--color-nude);
+    height: 400px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+/* About Me */
+.about-me {
+    background-color: var(--color-white);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-text p {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-gray-dark);
+}
+
+/* Qualifications */
+.qualifications {
+    background-color: var(--color-gray-light);
+}
+
+.qualifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.qualification-card {
+    background-color: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.qualification-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-heading);
+}
+
+.qualification-card ul {
+    list-style: none;
+}
+
+.qualification-card li {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--color-nude-light);
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.qualification-card li:before {
+    content: "✓";
+    color: var(--color-primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* My Approach */
+.my-approach {
+    background-color: var(--color-white);
+}
+
+.approach-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.approach-item {
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.approach-item h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.2rem;
+}
+
+/* Testimonials */
+.testimonials {
+    background-color: var(--color-nude-light);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.testimonial-card {
+    background-color: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.testimonial-card:before {
+    content: """;
+    font-size: 4rem;
+    color: var(--color-secondary);
+    position: absolute;
+    top: -10px;
+    left: var(--spacing-md);
+    font-family: serif;
+}
+
+.testimonial-card p {
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    line-height: 1.6;
+    padding-top: var(--spacing-sm);
+}
+
+.testimonial-author strong {
+    color: var(--color-primary);
+    display: block;
+}
+
+.testimonial-author span {
+    color: var(--color-gray);
+    font-size: 0.9rem;
+}
+
+/* Contact Page */
+.contact-hero {
+    background: linear-gradient(135deg, var(--color-nude-light) 0%, var(--color-secondary) 100%);
+    padding: 120px 0 var(--spacing-lg);
+    text-align: center;
+    margin-top: 70px;
+}
+
+.contact-hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-content {
+    background-color: var(--color-white);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    min-width: 30px;
+}
+
+.contact-text h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
+
+/* Contact Form */
+.contact-form {
+    background-color: var(--color-nude-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+}
+
+.contact-form h2 {
+    text-align: left;
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-gray-dark);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--color-nude);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.submit-button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.submit-button:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Pricing */
+.pricing {
+    background-color: var(--color-gray-light);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.pricing-card {
+    background-color: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.pricing-card.featured {
+    border: 3px solid var(--color-primary);
+    transform: scale(1.05);
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-5px);
+}
+
+.pricing-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-heading);
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xs);
+}
+
+.duration {
+    color: var(--color-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing-card ul {
+    list-style: none;
+    text-align: left;
+}
+
+.pricing-card li {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--color-nude-light);
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.pricing-card li:before {
+    content: "✓";
+    color: var(--color-primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* FAQ */
+.faq {
+    background-color: var(--color-white);
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: var(--spacing-lg);
+}
+
+.faq-item {
+    background-color: var(--color-nude-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.faq-item h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-section h3,
+.footer-section h4 {
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-heading);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-section a {
+    color: var(--color-nude);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--color-secondary);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--color-gray-dark);
+    padding-top: var(--spacing-md);
+    text-align: center;
+    color: var(--color-gray);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--color-white);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow-md);
+        padding: var(--spacing-md) 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .presentation-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .kinesiology-grid,
+    .benefits-list,
+    .qualifications-grid,
+    .approach-content,
+    .testimonials-grid,
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    section h2 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .kinesiology-card,
+    .qualification-card,
+    .testimonial-card,
+    .pricing-card {
+        padding: var(--spacing-md);
+    }
+    
+    .contact-form {
+        padding: var(--spacing-md);
+    }
+} 
