@@ -163,4 +163,50 @@ function formatDate(dateString) {
         day: 'numeric' 
     };
     return new Date(dateString).toLocaleDateString('fr-FR', options);
+}
+
+function showPopupConfirmation(message) {
+    var popup = document.getElementById('popup-confirmation');
+    popup.textContent = message;
+    popup.style.display = 'block';
+    popup.style.background = '#4CAF50';
+    popup.style.color = 'white';
+    popup.style.padding = '1rem 2rem';
+    popup.style.borderRadius = '8px';
+    popup.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+    popup.style.fontWeight = '600';
+    popup.style.fontSize = '1.1rem';
+    popup.style.transition = 'opacity 0.3s';
+    popup.style.opacity = '1';
+    setTimeout(function() {
+        popup.style.opacity = '0';
+        setTimeout(function() {
+            popup.style.display = 'none';
+            popup.textContent = '';
+        }, 400);
+    }, 3500);
+}
+
+function showConfirmation(e) {
+    // Empêche la redirection par défaut de Formspree
+    e.preventDefault();
+    var form = document.getElementById('appointmentForm');
+    var data = new FormData(form);
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(function(response) {
+        if (response.ok) {
+            form.reset();
+            form.style.display = 'none';
+            showPopupConfirmation('Merci, votre demande a bien été envoyée ! Vous recevrez une réponse rapidement.');
+        } else {
+            showPopupConfirmation("Une erreur s'est produite. Veuillez réessayer.");
+        }
+    }).catch(function() {
+        showPopupConfirmation("Une erreur s'est produite. Veuillez réessayer.");
+    });
 } 
